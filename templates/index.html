@@ -1,0 +1,49 @@
+{%extends 'dashbase.html'%}
+
+    {%block Body%}
+
+    <div class="Dashboard">
+      <div class="project-container">
+          <div class="project-title "><u>{{project.name}}</u>
+            <div class="ml-auto">
+              <form action="addtask/" method="get">
+                  <button class="btn btn-secondary" type="submit">ADD-TASK</button>
+              </form>
+          </div>
+          
+        </div>
+
+          
+      </div>
+      <div class="task-table">
+
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col" style="width: 10%;">S.No.</th>
+            <th scope="col" style="width: 35%;">Task</th>
+            <th scope="col" style="width: 25%;">Assigned</th>
+            <th scope="col"style="width: 15%;">Status</th>
+            <th scope="col"style="width: 15%;">Due Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for task in tasks %}
+          <tr>
+            <th scope="row">1</th>
+            <td>{{task.des}}</td>
+            
+            <td>
+              {% for person in task.assigned.all %}
+              <li>{{person.username}}</li>
+              {% endfor %}</td>
+            <td>{{task.status}}</td>
+            <td>{{task.due_date}}</td>
+            {% endfor %}
+          </tr>
+        </tbody>
+      </table>
+      </div>
+      {% endblock %}
+    <!-- JavaScript -->
+    

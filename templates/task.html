@@ -1,0 +1,55 @@
+{%extends 'dashbase.html'%}
+
+    {%block Body%}
+    <div class="Dashboard">
+      <div class="project-container">
+          <div class="project-title "><u>My-Tasks</u>
+
+        </div>
+
+          
+      </div>
+      <div class="task-table">
+
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col" style="width: 10%;">S.No.</th>
+            <th scope="col" style="width: 35%;">Task</th>
+            <th scope="col" style="width: 25%;">Project</th>
+            <th scope="col"style="width: 15%;">Status</th>
+            <th scope="col"style="width: 15%;">Due Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for task in tasks%}
+          <tr>
+            
+            <th scope="row">1</th>
+            <td>{{task.des}}</td>
+            <td>{{task.project}}</td>
+            <td>
+              {{task.status}}
+              {% if task.is_pending %}
+              <div onclick="markcomplete({{task.id}})">
+                <i class='bx bx-checkbox-checked bx-sm' style="margin-left:5px; color:green;"></i>
+              </div>
+              {% else %}
+              <div onclick="markincomplete({{task.id}})">
+              <i class='bx bx-checkbox bx-sm' style="margin-left:5px; color:red;"></i></td>
+              </div>
+              {% endif %}
+
+
+            <td>{{task.due_date}}</td>
+            
+            <td><div onclick="deleteTask({{task.id}})"><i class='bx bxs-checkbox-minus bx-sm' style="color:red"></i></div></td>
+          </tr>
+          {% endfor %}
+          
+        </tbody>
+      </table>
+      </div>
+      {% endblock %}
+    <!-- JavaScript -->
+    
